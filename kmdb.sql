@@ -119,28 +119,37 @@ CREATE TABLE movies (
     title TEXT,
     year_released INTEGER,
     MPAA_rating TEXT,
-    studio_ID INTEGER);
+    studio_ID INTEGER
+);
 
 CREATE TABLE studios (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name TEXT,
-    movie_id, INTEGER);
+    name TEXT
+);
 
 CREATE TABLE actors (
     id INTEGER PRIMARY KEY AUTOINCREMENT, 
     name TEXT, 
-    movie_id INTEGER, 
-    character_id INTEGER);
+);
 
 CREATE TABLE characters (
     id INTEGER PRIMARY KEY AUTOINCREMENT, 
     name TEXT, 
     movie_id INTEGER, 
-    actor_id INTEGER);
+    actor_id INTEGER
+);
 
 -- Insert data into your database that reflects the sample data shown above
 -- Use hard-coded foreign key IDs when necessary
 -- TODO!
+
+INSERT INTO movies (title, year_released, MPAA_rating, studio_ID) VALUES ("Batman Begins", "2005", "PG-13", 1);
+
+INSERT INTO movies (title, year_released, MPAA_rating, studio_ID) VALUES ("The Dark Knight", "2008", "PG-13", 1);
+
+INSERT INTO movies (title, year_released, MPAA_rating, studio_ID) VALUES ("The Dark Knight Rises", "2012", "PG-13", 1);
+
+INSERT INTO studios (name) VALUES ("Warner Bros.");
 
 -- Prints a header for the movies output
 .print "Movies"
@@ -149,6 +158,10 @@ CREATE TABLE characters (
 
 -- The SQL statement for the movies output
 -- TODO!
+
+SELECT movies.title, movies.year_released, movies.MPAA_rating, studios.name 
+FROM movies 
+INNER JOIN studios ON movies.studio_ID = studios.id;
 
 -- Prints a header for the cast output
 .print ""
